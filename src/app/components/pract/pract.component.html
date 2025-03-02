@@ -1,0 +1,26 @@
+<h3 class="text-center underline my-3">
+  Printing table of <span class="font-extrabold">{{ num }}</span>
+</h3>
+
+<table *ngIf="printTable" class="min-w-full table-auto border-collapse">
+  <thead>
+  <tr class="bg-gray-200">
+    <th class="py-3 px-6 border border-gray-300 text-left">Num</th>
+    <th class="py-3 px-6 border border-gray-300 text-left">Operation</th>
+    <th class="py-3 px-6 border border-gray-300 text-left">Value</th>
+    <th class="py-3 px-6 border border-gray-300 text-left">=</th>
+    <th class="py-3 px-6 border border-gray-300 text-left">Result</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let i of numbers" class="odd:bg-gray-50 even:bg-white">
+    <td class="py-2 px-6 border border-gray-300 text-center">{{ num }}</td>
+    <td class="py-2 px-6 border border-gray-300 text-center">x</td>
+    <td class="py-2 px-6 border border-gray-300 text-center">{{ i }}</td>
+    <td class="py-2 px-6 border border-gray-300 text-center">=</td>
+    <td class="py-2 px-6 border border-gray-300 text-center">
+      {{ num * i }}
+    </td>
+  </tr>
+  </tbody>
+</table>

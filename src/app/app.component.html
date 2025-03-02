@@ -1,0 +1,105 @@
+<div
+  class="text-center bg-gradient-to-r from-blue-50 to-indigo-50 min-h-screen py-10"
+>
+  <h1 class="text-4xl font-bold text-indigo-700 mb-8">
+    Hello from App Component
+  </h1>
+
+  <div *ngIf="isShowable">
+    <app-user-profile></app-user-profile>
+  </div>
+
+  <!-- Child Components (app-child) -->
+  <div
+    *ngIf="isShowable"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-5xl"
+  >
+    <app-child
+      class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+      warriorName="Turkish Warrior"
+    ></app-child>
+    <app-child
+      class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+      warriorName="Chinese Warrior"
+    ></app-child>
+    <app-child
+      class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+      warriorName="Russian Soldier"
+    ></app-child>
+    <app-child
+      class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+      warriorName="Azeri Assassin"
+    ></app-child>
+    <app-child
+      class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+    ></app-child>
+  </div>
+
+  <!-- Child Two Components (app-child-two) -->
+  <div
+    *ngIf="isShowable"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-5xl mt-8"
+  >
+    <!-- todo : reformat the child component -->
+    <app-child-two
+      *ngFor="let country of countries"
+      [canDeliverSpeach]="country.canDeliverSpeech"
+      [canFly]="country.canFly"
+      [canSwim]="country.canSwim"
+      [characterHeight]="country.characterHeight"
+      [countryName]="country.name"
+      [isEligible]="country.isEligible"
+      [sourceAmount]="country.amount"
+      class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+    >
+    </app-child-two>
+  </div>
+
+  <div
+    *ngIf="isShowable"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-5xl mt-8"
+  >
+    @for (num of randomNumbers; track $index) {
+    <app-pract
+      [tableNum]="num"
+      [tableLimit]="10"
+      [isShowable]="true"
+    ></app-pract>
+    <hr />
+    <br />
+    }
+  </div>
+
+  <div
+    *ngIf="isShowable"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-col-3 gap-6 mx-auto max-w-5xl mt-8"
+  >
+    <h3>Receiving value from child to parent</h3>
+    <app-pract-two
+      (anotherEvent)="receiveNumericVale($event)"
+      (myEvent)="getValueFromChild($event)"
+    ></app-pract-two>
+
+    <p>value from child component : {{ passedValue }}</p>
+    <p>value from child component : {{ passedStringValue }}</p>
+  </div>
+
+  <div
+    *ngIf="isShowable"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mx-auto max-w-5xl mt-8"
+  >
+    <app-child
+      (throwableValue)="getValueFromChild($event)"
+      warriorName="Pakistani Warrior"
+    ></app-child>
+  </div>
+
+  <!-- childValue : event created inside child component -->
+  <!-- parentComponentMethodToHandleChildValue : parent component method to grab the emttited value by child -->
+  <!-- $event : the predefined  -->
+
+  <app-child
+    (childValue)="parentComponentMethodToHandleChildValue($event)"
+    (passObject)="getObjectValueFromChildComponent($event)"
+  ></app-child>
+</div>

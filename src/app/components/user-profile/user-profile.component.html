@@ -1,0 +1,131 @@
+<div
+  class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="container max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg ring-1 ring-gray-200">
+    <!-- Profile Header -->
+    <h3 class="text-3xl font-extrabold text-center mb-6 text-indigo-600 tracking-tight">
+      Hello from User Profile
+    </h3>
+
+    <h4 class="text-3xl font-extrabold text-center mb-6 text-indigo-500 tracking-tighter">
+      The random number generated : {{ randomNumberGenerated }}
+    </h4>
+
+    <!-- Profile Info -->
+    <div class="profile-info bg-gray-100 p-6 rounded-lg mb-8">
+      <p class="text-lg text-gray-700 space-y-2">
+        <span class="block"><strong class="text-indigo-600 font-semibold">Name:</strong>
+          {{ name }}</span>
+        <span class="block"><strong class="text-indigo-600 font-semibold">Rank:</strong>
+          {{ rank }}</span>
+        <span class="block"><strong class="text-indigo-600 font-semibold">Bounty:</strong>
+          {{ headBounty }}</span>
+      </p>
+    </div>
+
+    <!-- Button with Property Binding -->
+    <div class="flex justify-center mb-8">
+      <button
+        [disabled]="isButtonDisabled"
+        class="bg-indigo-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-200 ease-in-out disabled:bg-gray-400 disabled:cursor-not-allowed">
+        Click Me
+      </button>
+    </div>
+
+    <!-- Input for Random Number -->
+    <div class="mb-8">
+      <input
+        (input)="showARandomNumber()"
+        class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 transition duration-150 ease-in-out" placeholder="Generate a random number" type="text"/>
+    </div>
+
+    <!-- Input for Logging Value to Console -->
+    <div class="mb-8">
+      <input
+        (input)="showInConsole($event)"
+        class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 transition duration-150 ease-in-out" placeholder="Write something" type="text"/>
+    </div>
+
+    <!-- Two-Way Data Binding (First Method) -->
+    <div class="mb-8">
+      <h2 class="text-xl text-gray-800 font-semibold text-center mb-4">
+        Value from Component:
+        <span class="font-bold text-indigo-600">
+          {{
+            placeholderValueText
+          }}
+        </span>
+      </h2>
+
+      <!-- * the event itselt is passed, remember the $event value -->
+      <input (input)="twoWayBindingCheckMethid($event)"
+        [value]="placeholderValueText"
+        class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 transition duration-150 ease-in-out" placeholder="Write text for 2-way data binding"
+        type="text"/>
+    </div>
+
+    <!-- Two-Way Data Binding (Banana in the Box) -->
+    <div class="mb-8">
+      <h2 class="text-xl text-gray-800 font-semibold text-center mb-4">
+        Two-Way Binding:
+        <span class="font-bold text-indigo-600">{{
+            bananaInTheBoxBindingValue
+          }}
+        </span>
+      </h2>
+      <input [(ngModel)]="bananaInTheBoxBindingValue"
+        class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 transition duration-150 ease-in-out"
+        placeholder="Type here for instant binding" type="text"/>
+    </div>
+
+    <!-- Table for Loop -->
+    <div *ngIf="users.length > 0" class="overflow-x-auto">
+      <table class="table-auto w-full text-left border-collapse">
+        <thead class="bg-indigo-600 text-white">
+        <tr>
+          <th class="px-6 py-3 text-sm font-extrabold uppercase tracking-wider">
+            ID
+          </th>
+          <th class="px-6 py-3 text-sm font-semibold uppercase tracking-wider">
+            Name
+          </th>
+          <th class="px-6 py-3 text-sm font-semibold uppercase tracking-wider">
+            Rank
+          </th>
+          <th class="px-6 py-3 text-sm font-semibold uppercase tracking-wider">
+            Amount
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- one method  -->
+        <tr *ngFor="let user of users" class="bg-white hover:bg-indigo-50 transition-colors duration-150">
+          <td class="px-6 py-4 text-gray-700 font-extrabold border-b border-gray-200">
+            {{ user.id }}
+          </td>
+          <td class="px-6 py-4 text-gray-700 border-b border-gray-200 capitalize">
+            {{ user.name }}
+          </td>
+          <td class="px-6 py-4 text-gray-700 border-b border-gray-200 capitalize">
+            {{ user.rank }}
+          </td>
+
+          <!-- <td class="px-6 py-4 text-gray-700 border-b border-gray-200">
+                  {{ user.amount > 5000 ? user.amount : 'Hidden' }}
+          </td> -->
+
+          <!-- Another way of writing structural directive -->
+          <td *ngIf="user.amount > 5000; else elseblock"
+            class="px-6 py-4 text-gray-700 border-b border-gray-200 capitalize">
+            {{ user.amount }}
+          </td>
+          <ng-template #elseblock>
+            <td class="px-6 py-4 text-gray-700 border-b border-gray-200 capitalize">
+              Hidden 👁
+            </td>
+          </ng-template>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
