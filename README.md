@@ -57,6 +57,7 @@ Use flag `--skip-tests=true` after command
 
 - Passing data from child to parent **component**
 - [Current Time video](https://youtu.be/2Yq3za3qIp0?t=4500)
+- https://youtu.be/2Yq3za3qIp0?t=4500
 
 
 
