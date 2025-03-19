@@ -57,6 +57,8 @@ export class UserProfileComponent {
     console.log('New Random Number in console : ' + this.randomNumberGenerated);
   }
 
+  
+
   showInConsole(e: Event) {
     // const value = (e.target as HTMLInputElement).value
 

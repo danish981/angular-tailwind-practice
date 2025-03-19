@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   parentComponentMethodToHandleChildValue(value: string) {
     console.log(
       "parent component APP_COMPONENT has received value from child component CHILD: " +
-        value
+      value
     );
   }
 

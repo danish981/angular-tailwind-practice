@@ -25,6 +25,7 @@ export class ChildComponent {
 
   // we can specify the type of the variable
   @Output() childValue = new EventEmitter();
+
   childMethod(value: string) {
     this.childValue.emit(value);
   }
